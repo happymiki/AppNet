@@ -1,28 +1,37 @@
-/*************************************************************************
-	> File Name: 3.4.1.c
-	> Author: 
-	> Mail: 
-	> Created Time: Fri 24 Nov 2017 10:48:53 AM CST
- ************************************************************************/
-
-#include<stdio.h>
+#include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
+
 void func1(void)
 {
-    printf("func1.\n");
-
+	printf("func1\n");
 }
+
+void func2(void)
+{
+	printf("func2\n");
+}
+
 
 int main(void)
 {
-    printf("hello world.\n");
-
-
-	// 褰撹繘绋嬭缁堟鏃讹紝绯荤粺浼氳嚜鍔ㄨ皟鐢ㄨ繖閲屾敞鍐岀殑func1鎵ц
-    atexit(func1);
-	//atexit(func2);
+	printf("hello world.\n");
 	
-	printf("my name id limei hanmeime.\n");
-
-    return 0;
+	// 当进程被正常终止时，系统会自动调用这里注册的func1执行
+	atexit(func2);
+	atexit(func1);
+	
+	printf("my name is lilei hanmeimei\n");
+	
+	
+	//return 0;
+	//exit(0);
+	_exit(0);
 }
+
+
+
+
+
+
+
